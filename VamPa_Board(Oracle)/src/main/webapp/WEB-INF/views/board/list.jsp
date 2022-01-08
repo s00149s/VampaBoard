@@ -138,7 +138,7 @@ a:hover {
 				<td><c:out value="${list.bno}"/></td>
 				<td>
 					<a class="move" href='<c:out value="${list.bno}"/>'>
-					<c:out value="${list.title}"/>
+						<c:out value="${list.title}"/>
 					</a>
 				</td>
 				<td><c:out value="${list.writer}"/></td>
@@ -200,6 +200,7 @@ $(document).ready(function(){
     let result = '<c:out value="${result}"/>';
     
     checkAlert(result);
+    console.log(result);
     
     function checkAlert(result){
         
@@ -271,7 +272,7 @@ $(document).ready(function(){
         moveForm.find("input[name='pageNum']").val(1);
         moveForm.submit();
     });
-	});
+
 </script>
 </body>
 </html>

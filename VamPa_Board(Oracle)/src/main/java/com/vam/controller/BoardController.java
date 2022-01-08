@@ -40,6 +40,8 @@ public class BoardController {
 		
 		log.info("boardListGET");
 		
+		log.info("cri : " + cri);
+		
 		model.addAttribute("list", bservice.getListPaging(cri));
 		
 		int total = bservice.getTotal(cri);
