@@ -95,6 +95,11 @@ textarea {
 	</form>
 	<form id="infoForm" action="/board/modify" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
+		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
+		<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
+		<input type="hidden" name="type" value="${cri.type }">
+		<input type="hidden" name="keyword" value="${cri.keyword }">
+		
 	</form>
 	<script>
 	
@@ -108,7 +113,7 @@ textarea {
 		form.submit();
 	});
 	
-	/* 수정하기 버튼 */
+	/* 수정완료 버튼 */
 	$("#modify_btn").on("click", function(e){
 		mForm.submit();
 	});

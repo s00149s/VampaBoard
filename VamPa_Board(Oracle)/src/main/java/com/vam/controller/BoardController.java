@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vam.model.BoardVO;
+import com.vam.model.Criteria;
+import com.vam.model.PageMakerDTO;
 import com.vam.service.BoardService;
 
 @Controller
@@ -23,13 +25,28 @@ public class BoardController {
 	private BoardService bservice;
 	
 	/* 게시판 목록 페이지 접속 */
+//	@GetMapping("/list")
+//	// => @RequestMapping(value="list", method=RequestMethod.GET)
+//	public void boardListGET(Model model) {
+//		
+//		log.info("게시판 목록 페이지 진입");
+//		
+//		model.addAttribute("list", bservice.getList());
+//	}
+	
+	/* 게시판 목록 페이지 접속(페이징 적용) */
 	@GetMapping("/list")
-	// => @RequestMapping(value="list", method=RequestMethod.GET)
-	public void boardListGET(Model model) {
+	public void boardListGET(Model model, Criteria cri) {
 		
-		log.info("게시판 목록 페이지 진입");
+		log.info("boardListGET");
 		
-		model.addAttribute("list", bservice.getList());
+		model.addAttribute("list", bservice.getListPaging(cri));
+		
+		int total = bservice.getTotal(cri);
+		
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		
+		model.addAttribute("pageMaker", pageMake);
 	}
 	
 	/* 게시판 등록 페이지 접속 */
@@ -56,17 +73,22 @@ public class BoardController {
 	
 	/* 게시판 조회 */
 	@GetMapping("/get")
-	public void boardGetPageGET(int bno, Model model) {
+	public void boardGetPageGET(int bno, Model model, Criteria cri) {
 		
 		model.addAttribute("pageInfo", bservice.getPage(bno));
+		
+		// cri속성명에 속성값으로 뷰로부터 전달받은 Criteria 인스턴스 저장
+		model.addAttribute("cri", cri);
 		
 	}
 	
 	/* 수정 페이지 이동 */
 	@GetMapping("/modify")
-	public void boardModifyGET(int bno, Model model) {
+	public void boardModifyGET(int bno, Model model, Criteria cri) {
 		
 		model.addAttribute("pageInfo", bservice.getPage(bno));
+		
+		model.addAttribute("cri", cri);
 		
 	}
 	

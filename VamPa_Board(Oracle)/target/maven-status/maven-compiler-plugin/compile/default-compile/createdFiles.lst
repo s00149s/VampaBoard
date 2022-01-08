@@ -1,0 +1,8 @@
+com\vam\mapper\BoardMapper.class
+com\vam\controller\BoardController.class
+com\vam\model\PageMakerDTO.class
+com\vam\controller\HomeController.class
+com\vam\model\BoardVO.class
+com\vam\model\Criteria.class
+com\vam\service\BoardService.class
+com\vam\service\BoardServiceImpl.class
