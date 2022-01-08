@@ -97,7 +97,7 @@ public class BoardController {
 	/* 게시판 수정 */
 	@PostMapping("/modify")
 	public String boardModifyPOST(BoardVO board, RedirectAttributes rttr) {
-		
+
 		bservice.modify(board);
 		
 		rttr.addFlashAttribute("result", "modify success");
